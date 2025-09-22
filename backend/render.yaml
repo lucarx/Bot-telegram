@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: telegram-bot-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DATABASE_PATH
+        value: bot_database.db
+      - key: PORT
+        value: 10000
